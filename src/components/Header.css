@@ -1,0 +1,23 @@
+/* Grid */
+.grid {
+	display: grid;
+}
+
+.logo {
+	grid-area: logo;
+}
+
+.content {
+	grid-area: content;
+}
+
+.sidenav {
+	grid-area: sidenav;
+}
+
+.grid-template-areas-2 {
+	grid-template-columns: 85% 15%;
+	grid-template-areas:
+		"sidenav logo"
+		"sidenav content";
+}

@@ -1,0 +1,311 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.modal {
+	box-shadow: none;
+	top: calc(50% + min(73px, max(0px, 918px + 73px - 100%)));
+	z-index: 160;
+	display: block;
+	border-radius: 4px;
+    left: 50%;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    width: 478px;
+	box-sizing: border-box;
+}
+
+.modal_inner {
+    background-color: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 16px;
+    box-sizing: border-box;
+    font-family: Source Sans Pro;
+    height: 100%;
+    left: 0;
+    padding: 48px;
+    position: relative;
+    text-align: left;
+    top: 0;
+    width: 100%;
+}
+
+.email_input_wrapper {
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: Source Sans Pro;
+}
+
+.email_input__label_wrapper {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.email_input__label_wrapper_span a {
+	color: #04aa6d;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    margin-left: 6px;
+    text-decoration: none;
+}
+
+.email_input__field_wrapper {
+	width: 100%;
+    font-family: Source Sans Pro;
+    font-size: 14px;
+	background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 6px 0;
+    padding: 14px;
+    line-height: inherit;
+}
+
+.pass_input_wrapper {
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    font-family: Source Sans Pro;
+}
+
+.pass_input__label_wrapper {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pass_input__label_wrapper_span {
+    color: #282a35;
+    cursor: pointer;
+    font-family: Source Sans Pro;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.pass_input__field_wrapper {
+	width: 100%;
+    font-family: Source Sans Pro;
+    font-size: 14px;
+	background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 6px 0;
+    padding: 14px;
+    line-height: inherit;
+}
+
+.bottom_box {
+    box-sizing: border-box;
+    position: relative;
+    top: 6px;
+    width: 100%;
+}
+
+.bottom_box_button_login {
+	margin-top: 10px;
+}
+
+.bottom_box_button_login button {
+    background-color: #04aa6d;
+    color: #fff;
+    width: 100%;
+    cursor: pointer;
+	border: 0;
+    border-radius: 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Source Sans Pro,sans-serif;
+    font-size: 18px;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: 600;
+    height: 50px;
+    letter-spacing: normal;
+    line-height: 1.17;
+    margin: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.bottom_box_button_login button:disabled {
+    cursor: not-allowed;
+}
+
+.cta_bottom_box_divider {
+	border: none;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cta_bottom_box_divider_text {
+    display: flex;
+    font-size: 12px;
+    font-weight: 500;
+    height: inherit;
+    text-align: center;
+    text-transform: uppercase;
+	box-sizing: border-box;
+    line-height: 50px;
+}
+
+.cta_bottom_box_divider_text:before {
+	border-bottom: 1px solid #c2c8d0;
+    content: "";
+    flex: 1 0 auto;
+    height: 50%;
+    margin-right: 5px;
+}
+
+.cta_bottom_box_divider_text:after {
+	border-bottom: 1px solid #c2c8d0;
+    content: "";
+    flex: 1 0 auto;
+    height: 50%;
+    margin-left: 5px;
+}
+
+.close_button {
+    display: block;
+    right: 30px;
+    top: 30px;
+cursor: pointer;
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    border: none;
+    background-color: #fff;
+}
+
+.button_wrapper_facebook {
+	/* cursor: pointer; */
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 48px;
+    color: #282a35;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    padding: 10px 20px;
+    fill: #fff!important;
+    background: #1877f2!important;
+    border-color: #1877f2!important;
+    color: #fff!important;
+    height: 50px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.button_wrapper_facebook_text {
+font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    white-space: nowrap;
+fill: #fff!important;
+}
+
+.button_wrapper_google {
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 48px;
+    color: #282a35;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    padding: 10px 20px;
+	fill: #fff!important;
+    background: #fff!important;
+    border-color: #c2c8d0!important;
+    color: #fff!important;
+    height: 50px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.button_wrapper_google_text {
+	font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    white-space: nowrap;
+    color: #2d333a!important;
+}
+
+.forgot_pwd_wrapper {
+	    margin-top: 18px;
+    text-align: center;
+    width: 100%;
+    color: #282a35;
+    font-family: Source Sans Pro;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+}
+
+.forgot_pwd_wrapper a {
+    color: #282a35;
+    font-family: Source Sans Pro;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+}

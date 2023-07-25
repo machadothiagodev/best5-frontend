@@ -1,0 +1,45 @@
+.filter {
+    background-color: white;
+    padding: 1rem;
+    margin: 2rem auto;
+    width: 50rem;
+    max-width: 95%;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  }
+  
+  .filter button {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: 1px solid #40005d;
+    background-color: #0b2494;
+    color: white;
+    border-radius: 12px;
+    margin-left: 1rem;
+  }
+  
+  .filter button:hover,
+  .filter button:active {
+    background-color: #07175e;
+    border-color: #07175e;
+  }
+
+  .filter__controls {
+    flex-wrap: wrap;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .filter__control {
+    display: flex;
+  }
+  
+  .filter__control input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }

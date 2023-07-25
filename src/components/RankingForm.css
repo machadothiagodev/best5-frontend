@@ -1,0 +1,135 @@
+.new-expense {
+  background-color: white;
+  padding: 1rem;
+  margin: 2rem auto;
+  width: 50rem;
+  max-width: 95%;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+
+.new-expense__actions {
+  text-align: center;
+}
+
+.new-expense button {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1.8rem;
+  border: 2px solid #000;
+  background-color: #fff;
+  color: #000;
+  border-radius: 18px;
+  margin-left: 1rem;
+}
+
+.new-expense button:hover {
+  background-color: #ebebeb;
+}
+
+.new-expense button.alternative {
+  color: #220131;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.new-expense button.alternative:hover,
+.new-expense button.alternative:active {
+  background-color: #ddb3f8;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.titlePieces {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.titlePieces label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.titlePieces input {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-right: 0.5rem;
+}
+
+.titlePieces select {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-right: 0.5rem;
+}
+
+.titlePieces .categorySize {
+  width: 50%;
+}
+
+.titlePieces .prepositionSize {
+  width: 25%;
+}
+
+.titlePieces.invalid input {
+  border: 1px solid red;
+}
+
+@media (max-width: 800px) {
+  .titlePieces .categorySize {
+    width: 100%;
+  }
+  
+  .titlePieces .prepositionSize {
+    width: 100%;
+  }
+
+  .titlePieces input {
+    margin: 10px 0;
+  }
+
+  .titlePieces {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.items {
+  flex-wrap: wrap;
+  gap: 1rem;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.item {
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item label {
+  font-weight: bold;
+  display: block;
+}
+
+.item input {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.item.invalid input {
+  border: 1px solid red;
+}
