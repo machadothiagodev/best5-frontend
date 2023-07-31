@@ -3,6 +3,7 @@ import { useLoaderData, defer, Await } from "react-router-dom";
 
 import RankingList from "../components/RankingList";
 import { getHost } from "../util/host";
+import { getJwtToken } from "../util/auth";
 
 const RankingsPage = () => {
     const data = useLoaderData();
@@ -40,7 +41,8 @@ export default RankingsPage;
 export async function loader({ request }) {
     const searchParam = new URL(request.url).searchParams.get('search');
 
-    const response = await fetch(getHost() + '/api/rankings' + (searchParam ? '?search=' + searchParam : ''))
+    const response = await fetch(getHost() + '/api/rankings' + (searchParam ? '?search=' + searchParam : ''),
+        { method: 'GET', headers: { 'Authorization': 'Bearer ' + getJwtToken() } })
         .catch(error => { throw { message: `Network error (${error.message})` } });
 
     if (!response.ok) {

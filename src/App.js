@@ -9,7 +9,8 @@ import NewRankingPage, { action as newRankingAction } from './pages/NewRanking';
 import LoginPage, { action as loginAction } from './pages/Login'
 import SignupPage, { action as signupAction } from './pages/Signup'
 import { action as logoutAction } from './pages/Logout'
-import { isLogIn, checkUserLogin } from './util/auth';
+import { getAuthToken, checkUserLogin } from './util/auth';
+import EmailConfirmPage, { action as emailConfirmAction } from './pages/EmailConfirm';
 
 const router = createBrowserRouter(
 	[
@@ -17,20 +18,16 @@ const router = createBrowserRouter(
 			id: 'root',
 			path: '/',
 			errorElement: <ErrorPage />,
-			loader: isLogIn,
 			children: [
 				{
 					path: '',
 					element: <RootLayout />,
+					loader: getAuthToken,
 					children: [
-						{
-							path: 'rankings',
-							children: [
-								{ index: true, element: <RankingsPage />, loader: rankingsLoader },
-								{ path: ':id', element: <RankingDetailPage />, loader: rankingDetailLoader },
-								{ path: 'new', element: <NewRankingPage />, action: newRankingAction, loader: checkUserLogin }
-							]
-						},
+						{ index: true, element: <RankingsPage />, loader: rankingsLoader },
+						{ path: 'rankings', element: <RankingsPage />, loader: rankingsLoader },
+						{ path: 'rankings/:id', element: <RankingDetailPage />, loader: rankingDetailLoader },
+						{ path: 'rankings/new', element: <NewRankingPage />, action: newRankingAction, loader: checkUserLogin }
 					]
 				},
 				{
@@ -46,6 +43,11 @@ const router = createBrowserRouter(
 					path: 'signup',
 					element: <SignupPage />,
 					action: signupAction
+				},
+				{
+					path: 'email-confirm',
+					element: <EmailConfirmPage />,
+					action: emailConfirmAction
 				}
 			]
 		},

@@ -53,7 +53,7 @@
     content:"0%"
 }
 .charts__chart{
-    background-color:#7f8c8d;
+    background-color:#48a7e6;
     width:100%;
     height:2em;
     margin:.5em 0;
@@ -1026,16 +1026,16 @@
     height:100%
 }
 .chart--default{
-    background-color:#7f8c8d
+    background-color:#48a7e6
 }
 .chart--default.chart--hover:hover{
-    background-color:#727f80
-}
-.chart--blue{
     background-color:#2980b9
 }
+.chart--blue{
+    background-color:#48a7e6
+}
 .chart--blue.chart--hover:hover{
-    background-color:#2472a4
+    background-color:#2980b9
 }
 .chart--green{
     background-color:#27ae60
@@ -1065,12 +1065,6 @@
     background-color:#d13bca
 }
 .chart--purple.chart--hover:hover{
-    background-color:#f7a815
-}
-.chart--blue{
-    background-color:#48a7e6
-}
-.chart--blue.chart--hover:hover{
     background-color:#f7a815
 }
 .chart--grey{

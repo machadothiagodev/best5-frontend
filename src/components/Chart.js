@@ -3,7 +3,7 @@ import './Chart.css';
 import { useState, useRef, useEffect } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useNavigate } from 'react-router-dom';
-import { getAuthToken } from '../util/auth'
+import { getJwtToken } from '../util/auth'
 import { getHost } from '../util/host';
 
 const barColors = ['chart--red', 'chart--orange', 'chart--yellow', 'chart--green', 'chart--purple', 'chart--blue']
@@ -39,16 +39,6 @@ const Chart = (props) => {
 	}
 
     const showVoteOptionsHandler = (flag) => {
-		// const token = await recaptchaRef.current.executeAsync();
-		// // console.log(token);
-
-		// const response = await fetch(`${host}/api/recaptcha/verify/${token}`, {
-		// 	method: 'PUT'
-		// });
-
-		// const data = await response.json();
-		// console.log(data);
-
 		if (props.source === 'home') {
 			navigate(`ranking/${props.ranking.id}?showVoteOptions=true${flag === 2 ? '&showNewItem=true' : ''}`);
 		}
@@ -69,8 +59,21 @@ const Chart = (props) => {
     }
 
 	const voteHandler = async () => {
+		// const token = await recaptchaRef.current.executeAsync();
+
+		// if (token) {
+		// 	const response = await fetch(`${getHost()}/api/recaptcha/verify/${token}`, {
+		// 		method: 'PUT'
+		// 	});
+	
+		// 	const data = await response.json();
+		// 	console.log('Result from verification', data);
+		// }
+
+		// recaptchaRef.current.reset();
+
 		if (newItem) {
-			fetch(`${getHost()}/api/ranking/${props.ranking.id}/item`, {
+			fetch(`${getHost()}/api/rankings/${props.ranking.id}/items`, {
 				method: 'POST',
 				body: JSON.stringify({
 					name: newItem,
@@ -78,7 +81,7 @@ const Chart = (props) => {
 				}),
 				headers: {
 					'Content-type': 'application/json; charset=UTF-8',
-					'Authorization': 'Bearer ' + getAuthToken()
+					'Authorization': 'Bearer ' + getJwtToken()
 				}
 			}).then(response => response.json())
 				.then(data => {
@@ -88,12 +91,12 @@ const Chart = (props) => {
 					setForceSelect(false);
 					setNewItem();
 
-					console.log(data);
+					// console.log(data);
 					props.onAdd(data);
 					alert('OBRIGADO PELO SEU VOTO!\nSUA OPINIÃO É MUITO IMPORTANTE PARA NÓS');
 				})
 		} else {
-			const res = await fetch(`${getHost()}/api/ranking/${props.ranking.id}/item/${ranKingItemSelect}`, {
+			const res = await fetch(`${getHost()}/api/rankings/${props.ranking.id}/items/${ranKingItemSelect}`, {
 				method: 'PUT'
 			});
 	
@@ -124,6 +127,7 @@ const Chart = (props) => {
 	let rankingItems_;
 	let remainingItems;
 	if (props.ranking) {
+		// console.log(props.ranking.items);
 		rankingItems_ = props.ranking.items.slice(0, 5);
 		remainingItems = []
 		if (props.ranking.items.length > 5) {
@@ -145,7 +149,7 @@ const Chart = (props) => {
 		<div>
 		{props.ranking && 
 		<>
-			<ReCAPTCHA ref={recaptchaRef} size='invisible' sitekey='6LdmdPAmAAAAABINh3WHm_u3aHSeOTtGzFLGxryh' />
+			<ReCAPTCHA ref={recaptchaRef} onChange={e => console.log(e)} size='invisible' sitekey='6LdmdPAmAAAAABINh3WHm_u3aHSeOTtGzFLGxryh' />
 			<div style={{textAlign: 'right', fontSize: '0.7rem', paddingBottom: '8px'}}>#{props.ranking.id}</div>
 			<div style={{ fontSize: '2rem', paddingBottom: '20px' }}>{props.ranking.name}</div>
 			<div className='charts'>

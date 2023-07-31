@@ -1,7 +1,6 @@
 import { json, redirect } from "react-router-dom";
 
 import SignUpForm from "../components/SignupForm";
-import { setAuthToken } from "../util/auth"
 import { getHost } from "../util/host";
 
 const SignupPage = () => {
@@ -14,12 +13,17 @@ export async function action({ request }) {
     const formData = await request.formData();
 
     const newUser = {
-        name: formData.get('name'),
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
         email: formData.get('email'),
+        birthdayDate: formData.get('day') + '/' + formData.get('month') + '/' + formData.get('year'),
+        gender: formData.get('gender'),
         password: formData.get('password')
     }
 
-    const response = await fetch(getHost() + '/api/user/signup', {
+    // console.log(newUser);
+
+    const response = await fetch(getHost() + '/api/users/signup', {
         method: request.method,
         headers: {
             'Content-Type': 'application/json'
@@ -31,8 +35,5 @@ export async function action({ request }) {
         return response;
     }
 
-    const responseData = await response.json();
-    setAuthToken(responseData.token);
-
-    return redirect('/rankings');
+    return redirect('/email-confirm?email=' + newUser.email);
 }

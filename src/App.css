@@ -39,7 +39,22 @@
 
 .modal {
 	box-shadow: none;
-	top: calc(50% + min(73px, max(0px, 918px + 73px - 100%)));
+	top: calc(30% + min(73px, max(0px, 918px + 73px - 100%)));
+	z-index: 160;
+	display: block;
+	border-radius: 4px;
+    left: 50%;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    width: 478px;
+	box-sizing: border-box;
+}
+
+.modal_signup {
+	box-shadow: none;
+	top: calc(46% + min(73px, max(0px, 918px + 73px - 100%)));
 	z-index: 160;
 	display: block;
 	border-radius: 4px;
@@ -72,6 +87,15 @@
     display: flex;
     flex-direction: column;
     font-family: Source Sans Pro;
+}
+
+.email_input_wrapper select {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 6px 0;
 }
 
 .email_input__label_wrapper {
@@ -308,4 +332,37 @@ fill: #fff!important;
     font-weight: 600;
     text-align: center;
     text-decoration: none;
+}
+
+.gender {
+    background-color: #fff;
+    border: 1px solid #ccd0d5;
+    box-sizing: border-box;
+    display: inline-block;
+    flex: 1 0 auto;
+    font-weight: normal;
+    height: 36px;
+    margin: 8px 0px 6px;
+    padding: 0;
+    position: relative;
+    width: auto;
+}
+
+.gender-label {
+    box-sizing: border-box;
+    color: #1c1e21;
+    display: inline-block;
+    font-family: SFProText-Medium, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 36px;
+    padding: 0 28px 0 10px;
+    width: 100%;
+}
+
+.gender input {
+    height: 36px;
+    margin: 0;
+    position: absolute;
+    right: 10px;
+    top: 0;
 }

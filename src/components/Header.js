@@ -1,20 +1,31 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 
-import { useRef } from 'react';
-import { Link, useNavigate, Form, useRouteLoaderData } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
+import { Link, useNavigate, Form, useLoaderData, useSubmit } from 'react-router-dom';
 
 import './Header.css'
 
 const Header = () => {
 	// const searchParamInputRef = useRef();
 	const navigate = useNavigate();
-	const isLogIn = useRouteLoaderData('root');
+	const authToken = useLoaderData();
+	const submit = useSubmit();
 
 	// const searchHandler = (event) => {
 	// 	event.preventDefault();
 	// 	navigate('/rankings?search=' + searchParamInputRef.current.value);
 	// }
+
+	useEffect(() => {
+		if (authToken) {
+			const tokenExpiration = JSON.parse(authToken).expires_in - new Date().getTime();
+
+			setTimeout(() => {
+				submit(null, {action: '/logout', method: 'POST'})
+			}, tokenExpiration);
+		}
+	}, [authToken, submit]);
 
 	return (
 		<>
@@ -27,12 +38,12 @@ const Header = () => {
 					</select> */}
 				</div>
 				<div className="content" style={{display: 'flex', justifyContent: 'end', alignItems: 'end', marginRight: '1rem'}}>
-					{!isLogIn &&
+					{!authToken &&
 						<button onClick={() => navigate('/login')} style={{ border: 'none', backgroundColor: '#FFF', cursor: 'pointer', fontSize: '1.3rem', fontWeight: 'bold' }}>
 							ENTRAR
 						</button>
 					}
-					{isLogIn &&
+					{authToken &&
 						<Form action='/logout' method='POST'>
 							<button type='submit' style={{ border: 'none', backgroundColor: '#FFF', cursor: 'pointer', fontSize: '1.3rem', fontWeight: 'bold' }}>
 								SAIR
@@ -44,7 +55,7 @@ const Header = () => {
 			<hr style={{ borderTop: '3px solid #9cabf1' }} />
 			<div className='topnav'>
 				<Link to='/'>HOME</Link>
-				<Link to='/rankings'>RANKINGS</Link>
+				{/* <Link to='/rankings'>RANKINGS</Link> */}
 				<Link to='/rankings/new'>CRIE SEU RANKING</Link>
 				{/* <div className='search-container'>
 					<form onSubmit={searchHandler}>

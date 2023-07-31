@@ -12,10 +12,14 @@ export function deleteAuthToken() {
     localStorage.removeItem('authToken');
 }
 
-export function isLogIn() {
+function isLogIn() {
     return getAuthToken() !== null;
 }
 
 export function checkUserLogin() {
     return !isLogIn() ? redirect('/login') : null;
+}
+
+export function getJwtToken() {
+    return isLogIn() ? JSON.parse(getAuthToken()).access_token : '';
 }
