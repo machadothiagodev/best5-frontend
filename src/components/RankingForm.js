@@ -80,7 +80,7 @@ const RankingForm = (props) => {
 			<form onSubmit={handleSubmit(submitHandler)}>
 				<div className='titlePieces'>
 					<label>MELHOR</label>
-					<input type='text' id='prodOrServ' name='prodOrServ' placeholder='O que você quer ranquear?' {...register('prodOrServ', { required: true, onChange: event => setProdOrServ(event.target.value) })} />
+					<input type='text' id='prodOrServ' name='prodOrServ' placeholder='O que você deseja ranquear?' {...register('prodOrServ', { required: true, onChange: event => setProdOrServ(event.target.value) })} />
 				</div>
 				<div className='items'>
 					{inputItems.map((element, index) => (
