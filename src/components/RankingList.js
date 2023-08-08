@@ -1,5 +1,6 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { useRef } from 'react';
+import slugify from 'react-slugify';
 
 import Card from '../components/UI/Card'
 import RankingItemList from './RankingItemList';
@@ -30,7 +31,7 @@ const RankingList = ({ rankings }) => {
 			</Card>
 			{rankings && rankings.map(ranking => (
 				<Card key={ranking.id} className='rankings'>
-					<div style={{textAlign: 'right', fontSize: '0.7rem', paddingBottom: '8px'}}><Link to={`/rankings/${ranking.id}`} style={{color: 'black', textDecoration: 'none'}}>#{ranking.id}</Link></div>
+					<div style={{textAlign: 'right', fontSize: '0.7rem', paddingBottom: '8px'}}><Link to={`/rankings/${ranking.id}/${slugify(ranking.name)}`} style={{color: 'black', textDecoration: 'none'}}>#{ranking.id}</Link></div>
 					<div style={{ fontSize: '2rem', paddingBottom: '20px' }}>{ranking.name}</div>
 					<RankingItemList ranking={ranking} />
 					<div style={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>

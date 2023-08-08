@@ -3,6 +3,8 @@ import { useSearchParams } from 'react-router-dom'
 
 import Card from './UI/Card'
 import Chart from './Chart'
+import { Helmet } from 'react-helmet';
+import slugify from 'react-slugify';
 
 const Ranking = (props) => {
     const [ranking, setRanking] = useState(props.ranking);
@@ -40,6 +42,11 @@ const Ranking = (props) => {
 
     return (
         <Card className='rankings'>
+			<Helmet>
+				<meta property='og:url' content={`${window.location.protocol}//${window.location.host}/${ranking.id}/${slugify(ranking.name)}`} />
+				<meta property='og:description' content={`Participe! Vote no Ranking ${ranking.name}`} />
+				<meta name="description" content={`Participe! Vote no Ranking ${ranking.name}`} />
+			</Helmet>
             <Chart ranking={ranking} onVote={voteHanlder} onAdd={addHandler} showVoteOptions={searchParams.get('showVoteOptions')} showNewItem={searchParams.get('showNewItem')} />
         </Card>
     );

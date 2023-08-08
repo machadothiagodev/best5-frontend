@@ -27,6 +27,7 @@ const router = createBrowserRouter(
 						{ index: true, element: <RankingsPage />, loader: rankingsLoader },
 						{ path: 'rankings', element: <RankingsPage />, loader: rankingsLoader },
 						{ path: 'rankings/:id', element: <RankingDetailPage />, loader: rankingDetailLoader },
+						{ path: 'rankings/:id/:slug', element: <RankingDetailPage />, loader: rankingDetailLoader },
 						{ path: 'rankings/new', element: <NewRankingPage />, action: newRankingAction, loader: checkUserLogin }
 					]
 				},

@@ -11,13 +11,18 @@
 	grid-area: content;
 }
 
-.sidenav {
-	grid-area: sidenav;
+.title {
+	grid-area: title;
+	margin: -15px;
+}
+
+.subtitle {
+	grid-area: subtitle;
 }
 
 .grid-template-areas-2 {
 	grid-template-columns: 85% 15%;
 	grid-template-areas:
-		"sidenav logo"
-		"sidenav content";
+		"title logo"
+		"title content";
 }

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import { getJwtToken } from '../util/auth'
@@ -181,10 +181,10 @@ const Chart = (props) => {
 	const newItemInputHandler = (event) => {
 		if (event.target.value) {
 			setNewItem(event.target.value);
-			setForceSelect(true);
+			// setForceSelect(true);
 		} else {
 			setNewItem();
-			setForceSelect(false);
+			// setForceSelect(false);
 		}
 	}
 
@@ -207,6 +207,14 @@ const Chart = (props) => {
 				votes: otherVotes
 			});
 		}
+	}
+
+	const cancelAddItemHandler = () => {
+		setShowAddItem(false);
+		setShowVoteOptions(false);
+		setRanKingItemSelect();
+		setNewItem();
+		setErrorMessage();
 	}
 
 	return (
@@ -245,13 +253,13 @@ const Chart = (props) => {
 													<option key={item.id} value={item.id}>{item.name}</option>
 												))}
 											</select>
-											<button type='button' onClick={showAddItemHandler} style={{whiteSpace: 'nowrap'}}>NOVO ITEM</button>
+											<button type='button' onClick={showAddItemHandler} style={{ whiteSpace: 'nowrap' }}>NOVO ITEM</button>
 										</div>
 									}
 									{(showAddItem && rankingItem.id === -1) &&
 										<div style={{ display: 'flex', width: '100%', padding: '0.5rem 0rem' }}>
 											<input type='text' onChange={newItemInputHandler} style={{ font: 'inherit', padding: '0.5rem', borderRadius: '6px', border: '1px solid #ccc', width: '90%' }} />
-											<button type='button' onClick={() => { setShowAddItem(false); setShowVoteOptions(false); setRanKingItemSelect(); }}>CANCELAR</button>
+											<button type='button' onClick={cancelAddItemHandler}>CANCELAR</button>
 										</div>
 									}
 								</div>
@@ -261,7 +269,7 @@ const Chart = (props) => {
 							<div style={{ display: 'flex', width: '100%', padding: '0.5rem 0rem', alignItems: 'center' }}>
 								<input type='radio' name={`ranking_id_${props.ranking.id}`} value='-1' onChange={selectItemHandler} checked={showAddItem} />
 								<input type='text' onChange={newItemInputHandler} style={{ font: 'inherit', padding: '0.5rem', borderRadius: '6px', border: '1px solid #ccc', width: '100%' }} />
-								<button type='button' onClick={() => { setShowAddItem(false); setRanKingItemSelect(); }}>CANCELAR</button>
+								<button type='button' onClick={cancelAddItemHandler}>CANCELAR</button>
 							</div>
 						}
 					</div>

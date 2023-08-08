@@ -30,16 +30,21 @@ const Header = () => {
 	return (
 		<>
 			<section className="grid grid-template-areas-2">
-				<div className="sidenav" style={{ fontFamily: 'Noteworthy', color: '#9cabf1', marginLeft: '3rem', fontSize: '6rem', alignItems: 'center' }}>Best 5</div>
+				<div className="title" style={{ fontFamily: 'Noteworthy', color: '#6F6FF1', marginLeft: '1rem', fontSize: '6rem' }}>
+					Best5
+				</div>
+				{/* <div className='subtitle' style={{ marginLeft: '1rem', color: '#6F6FF1', fontSize: '1.1rem', fontWeight: 'bold'}}>
+					Site de Rankings
+				</div> */}
 				<div className="logo" style={{display: 'flex', justifyContent: 'end', alignItems: 'center', fontSize: '0.8rem', fontWeight: 'bold', marginRight: '1rem'}}>
 					{/* <select>
 						<option value='pt-BR'>Português (Brasil)</option>
 						<option value='en-US'>English (US)</option>
 					</select> */}
 				</div>
-				<div className="content" style={{display: 'flex', justifyContent: 'end', alignItems: 'end', marginRight: '1rem'}}>
+				<div className="content" style={{display: 'flex', justifyContent: 'end', alignItems: 'end'}}>
 					{!authToken &&
-						<button onClick={() => navigate('/login')} style={{ border: 'none', backgroundColor: '#FFF', cursor: 'pointer', fontSize: '1.3rem', fontWeight: 'bold' }}>
+						<button onClick={() => navigate('/login')} style={{ border: 'none', backgroundColor: '#FFF', cursor: 'pointer', fontSize: '1.3rem', fontWeight: 'bold', color: '#000' }}>
 							ENTRAR
 						</button>
 					}
@@ -52,7 +57,7 @@ const Header = () => {
 					}
 				</div>
 			</section>
-			<hr style={{ borderTop: '3px solid #9cabf1' }} />
+			<hr style={{ borderTop: '3px solid #6F6FF1' }} />
 			<div className='topnav'>
 				<Link to='/'>HOME</Link>
 				{/* <Link to='/rankings'>RANKINGS</Link> */}
@@ -64,7 +69,7 @@ const Header = () => {
 					</form>
 				</div> */}
 			</div>
-			<hr style={{ borderTop: '1px solid #9cabf1' }} />
+			<hr style={{ borderTop: '1px solid #6F6FF1' }} />
 		</>
 	);
 }
