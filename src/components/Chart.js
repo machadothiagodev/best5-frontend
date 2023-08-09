@@ -217,6 +217,15 @@ const Chart = (props) => {
 		setErrorMessage();
 	}
 
+	const clickHandler = (bannerId) => {
+		fetch(getHost() + '/api/banners/' + bannerId + '/click', { method: 'PUT' })
+			.then(response => {
+				if (!response.ok) {
+					console.log('Deu ruim!');
+				}
+			}).catch(error => console.log(error));
+	}
+
 	return (
 		<>
 			<ReCAPTCHA ref={recaptchaRef} onChange={e => console.log(e)} size='invisible' sitekey='6LdmdPAmAAAAABINh3WHm_u3aHSeOTtGzFLGxryh' />
@@ -283,6 +292,13 @@ const Chart = (props) => {
 						<div style={{ textAlign: 'center', marginTop: '25px' }}>
 							<button type='button' onClick={voteHandler} disabled={!(ranKingItemSelect || newItem)}>CONFIRMAR</button>
 							{errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+						</div>
+					}
+					{props.ranking.banner &&
+						<div className='banner'>
+							<a href={props.ranking.banner.redirectUrl} target='_blank' onClick={() => clickHandler(props.ranking.banner.id)}>
+								<img style={{ width: '100%', maxWidth: '500px', height: 'auto' }} src={`${getHost()}/img/${props.ranking.banner.imagePath}`} />
+							</a>
 						</div>
 					}
 				</>

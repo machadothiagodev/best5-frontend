@@ -53,7 +53,7 @@ const RankingList = ({ rankings }) => {
 					{ranking.banner &&
 						<div className='banner'>
 							<a href={ranking.banner.redirectUrl} target='_blank' onClick={() => clickHandler(ranking.banner.id)}>
-								<img style={{ width: '100%', maxWidth: '500px', height: 'auto' }} src={`${window.location.protocol}//${window.location.host}/${ranking.banner.imagePath}`} />
+								<img style={{ width: '100%', maxWidth: '500px', height: 'auto' }} src={`${getHost()}/img/${ranking.banner.imagePath}`} />
 							</a>
 						</div>
 					}
