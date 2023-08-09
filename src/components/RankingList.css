@@ -44,3 +44,7 @@ background-color: #ebebeb;
   border: 1px solid #ccc;
   width: 100%;
 }
+
+.banner {
+  text-align: center;
+}

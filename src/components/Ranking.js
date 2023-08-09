@@ -43,9 +43,11 @@ const Ranking = (props) => {
     return (
         <Card className='rankings'>
 			<Helmet>
-				<meta property='og:url' content={`${window.location.protocol}//${window.location.host}/${ranking.id}/${slugify(ranking.name)}`} />
+				<meta name='description' itemprop='description' content={`Participe! Vote no Ranking ${ranking.name}`} />
+				<meta itemprop='description' content={`Participe! Vote no Ranking ${ranking.name}`} />
 				<meta property='og:description' content={`Participe! Vote no Ranking ${ranking.name}`} />
-				<meta name="description" content={`Participe! Vote no Ranking ${ranking.name}`} />
+				<meta property='twitter:description' content={`Participe! Vote no Ranking ${ranking.name}`} />
+				<meta property='og:url' content={`${window.location.protocol}//${window.location.host}/${ranking.id}/${slugify(ranking.name)}`} />
 			</Helmet>
             <Chart ranking={ranking} onVote={voteHanlder} onAdd={addHandler} showVoteOptions={searchParams.get('showVoteOptions')} showNewItem={searchParams.get('showNewItem')} />
         </Card>
