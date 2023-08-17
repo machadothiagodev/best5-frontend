@@ -236,7 +236,22 @@ const Chart = (props) => {
 					<div className='charts'>
 						{showExpandedRanking && allRankingItems(props.ranking).map((rankingItem, index) => (
 							<div key={rankingItem.id} className='chart-bar'>
-								<span>{rankingItem.name} {rankingItem.id === -1 && <button type='button' onClick={event => setShowExpandedRanking(false)} style={{ border: 'none', color: '#48A7E6', backgroundColor: '#FFF', cursor: 'pointer', fontSize: '0.7rem', fontWeight: 'bold', padding: '0' }}>OCULTAR OUTROS ITENS</button>}</span>
+								{ rankingItem.logo && 
+									<div style={{display: 'flex', alignItems: 'center'}}>
+										<a href={rankingItem.logo.redirectUrl} target='_blank'>
+											<img src={`${getHost()}/img/logo/${rankingItem.logo.fileName}`} style={{width: '2rem', height: 'auto'}} />
+										</a>
+										<span style={{fontSize: '0.9rem'}}>
+											<a href={rankingItem.logo.redirectUrl} target='_blank' style={{textDecoration: 'none', color: 'black'}}>
+												{rankingItem.name} 
+											</a>
+											{rankingItem.id === -1 && <button type='button' onClick={event => setShowExpandedRanking(false)} style={{ border: 'none', color: '#48A7E6', backgroundColor: '#FFF', cursor: 'pointer', fontSize: '0.7rem', fontWeight: 'bold', padding: '0' }}>OCULTAR OUTROS ITENS</button>}
+										</span>
+									</div>
+								}
+								{ !rankingItem.logo && 
+									<span style={{fontSize: '0.9rem'}}>{rankingItem.name} {rankingItem.id === -1 && <button type='button' onClick={event => setShowExpandedRanking(false)} style={{ border: 'none', color: '#48A7E6', backgroundColor: '#FFF', cursor: 'pointer', fontSize: '0.7rem', fontWeight: 'bold', padding: '0' }}>OCULTAR OUTROS ITENS</button>}</span>
+								}
 								<div style={{ display: 'flex', alignItems: 'center' }}>
 									<div className={`charts__chart chart--p${barFillHeight(props.ranking.totalVotes, rankingItem.votes)} ${barColors[index]}`} style={{ fontWeight: 'bolder', display: 'flex', alignItems: 'center' }}>
 										&nbsp;&nbsp;&nbsp;{barFillHeight(props.ranking.totalVotes, rankingItem.votes)}%
@@ -246,7 +261,22 @@ const Chart = (props) => {
 						))}
 						{!showExpandedRanking && best5RankingItems(props.ranking).map((rankingItem, index) => (
 							<div key={rankingItem.id} className='chart-bar'>
-								<span>{rankingItem.name} {!showVoteOptions && !showAddItem && rankingItem.id === -1 && <button type='button' onClick={event => setShowExpandedRanking(true)} style={{ border: 'none', color: '#48A7E6', backgroundColor: '#FFF', cursor: 'pointer', fontSize: '0.7rem', fontWeight: 'bold', padding: '0' }}>VEJA TODOS OS ITENS</button>}</span>
+								{ rankingItem.logo && 
+									<div style={{display: 'flex', alignItems: 'center'}}>
+										<a href={rankingItem.logo.redirectUrl} target='_blank'>
+											<img src={`${getHost()}/img/logo/${rankingItem.logo.fileName}`} style={{width: '2rem', height: 'auto'}} />
+										</a>
+										<span style={{fontSize: '0.9rem'}}>
+											<a href={rankingItem.logo.redirectUrl} target='_blank' style={{textDecoration: 'none', color: 'black'}}>
+												{rankingItem.name} 
+											</a>
+											{rankingItem.id === -1 && <button type='button' onClick={event => setShowExpandedRanking(true)} style={{ border: 'none', color: '#48A7E6', backgroundColor: '#FFF', cursor: 'pointer', fontSize: '0.7rem', fontWeight: 'bold', padding: '0' }}>VEJA TODOS OS ITENS</button>}
+										</span>
+									</div>
+								}
+								{ !rankingItem.logo && 
+									<span style={{fontSize: '0.9rem'}}>{rankingItem.name} {rankingItem.id === -1 && <button type='button' onClick={event => setShowExpandedRanking(true)} style={{ border: 'none', color: '#48A7E6', backgroundColor: '#FFF', cursor: 'pointer', fontSize: '0.7rem', fontWeight: 'bold', padding: '0' }}>VEJA TODOS OS ITENS</button>}</span>
+								}
 								<div style={{ display: 'flex', alignItems: 'center' }}>
 									{showVoteOptions && <input type='radio' name={`ranking_id_${props.ranking.id}`} value={rankingItem.id} onChange={selectItemHandler} checked={rankingItem.id == ranKingItemSelect || forceSelect} disabled={showAddItem && rankingItem.id !== -1} />}
 									{(rankingItem.id !== -1 || !showVoteOptions) &&
@@ -297,7 +327,7 @@ const Chart = (props) => {
 					{props.ranking.banner &&
 						<div className='banner'>
 							<a href={props.ranking.banner.redirectUrl} target='_blank' onClick={() => clickHandler(props.ranking.banner.id)}>
-								<img style={{ width: '100%', maxWidth: '500px', height: 'auto' }} src={`${getHost()}/img/${props.ranking.banner.imagePath}`} />
+								<img style={{ width: '100%', maxWidth: '500px', height: 'auto' }} src={`${getHost()}/img/banner/${props.ranking.banner.fileName}`} />
 							</a>
 						</div>
 					}

@@ -44,7 +44,9 @@ const RankingList = ({ rankings }) => {
 					<div style={{ textAlign: 'right', fontSize: '0.7rem', paddingBottom: '8px' }}>
 						<Link to={`/rankings/${ranking.id}/${slugify(ranking.name)}`} style={{ color: 'black', textDecoration: 'none' }}>#{ranking.id}</Link>
 					</div>
-					<div style={{ fontSize: '2rem', paddingBottom: '20px' }}>{ranking.name}</div>
+					<div style={{ fontSize: '2rem', paddingBottom: '20px' }}>
+						<Link to={`/rankings/${ranking.id}/${slugify(ranking.name)}`} style={{ color: 'black', textDecoration: 'none' }}>{ranking.name}</Link>
+					</div>
 					<RankingItemList ranking={ranking} />
 					<div style={{ display: 'flex', justifyContent: 'center', marginTop: '25px' }}>
 						<button type='button' onClick={() => showVoteOptionsHandler(ranking, 1)}>VOTE!</button>
@@ -53,7 +55,7 @@ const RankingList = ({ rankings }) => {
 					{ranking.banner &&
 						<div className='banner'>
 							<a href={ranking.banner.redirectUrl} target='_blank' onClick={() => clickHandler(ranking.banner.id)}>
-								<img style={{ width: '100%', maxWidth: '500px', height: 'auto' }} src={`${getHost()}/img/${ranking.banner.imagePath}`} />
+								<img style={{ width: '100%', maxWidth: '500px', height: 'auto' }} src={`${getHost()}/img/banner/${ranking.banner.fileName}`} />
 							</a>
 						</div>
 					}

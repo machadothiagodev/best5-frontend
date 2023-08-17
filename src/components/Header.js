@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 
 import { useRef, useEffect } from 'react';
-import { Link, useNavigate, Form, useLoaderData, useSubmit } from 'react-router-dom';
+import { Link, useNavigate, Form, useLoaderData, useSubmit, NavLink } from 'react-router-dom';
 
 import './Header.css'
 
@@ -30,9 +30,14 @@ const Header = () => {
 	return (
 		<>
 			<section className="grid grid-template-areas-2">
-				<div className="title" style={{ fontFamily: 'Noteworthy', color: '#6F6FF1', marginLeft: '1rem', fontSize: '6rem' }}>
-					Best5
+				<div className="title">
+					<Link to='/'>
+						<img src="/best5-full-logo.png" style={{maxWidth: '25rem', height: 'auto', margin: '10px'}} />
+					</Link>
 				</div>
+				{/* <div className="title" style={{ fontFamily: 'Noteworthy', color: '#6F6FF1', marginLeft: '1rem', fontSize: '6rem' }}>
+					Best5
+				</div> */}
 				{/* <div className='subtitle' style={{ marginLeft: '1rem', color: '#6F6FF1', fontSize: '1.1rem', fontWeight: 'bold'}}>
 					Site de Rankings
 				</div> */}
@@ -57,19 +62,21 @@ const Header = () => {
 					}
 				</div>
 			</section>
-			<hr style={{ borderTop: '3px solid #6F6FF1' }} />
+			<hr style={{ borderTop: '3px solid #6F6FF1', marginBottom: '-1px'}} />
 			<div className='topnav'>
-				<Link to='/'>HOME</Link>
+				<NavLink end to='/rankings'>RANKINGS</NavLink>
 				{/* <Link to='/rankings'>RANKINGS</Link> */}
-				<Link to='/rankings/new'>CRIE SEU RANKING</Link>
+				<NavLink to='/rankings/new'>CRIE SEU RANKING</NavLink>
 				{/* <div className='search-container'>
 					<form onSubmit={searchHandler}>
 						<input type='text' ref={searchParamInputRef} />
 						<button type='submit'>BUSCAR</button>
 					</form>
 				</div> */}
+				<NavLink to='/advertise'>ANUNCIE</NavLink>
+				<NavLink to='/about'>SOBRE</NavLink>
 			</div>
-			<hr style={{ borderTop: '1px solid #6F6FF1' }} />
+			<hr style={{ borderTop: '1px solid #6F6FF1', marginTop: '-1px' }} />
 		</>
 	);
 }

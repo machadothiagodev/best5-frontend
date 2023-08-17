@@ -43,7 +43,7 @@ const Ranking = (props) => {
     return (
         <Card className='rankings'>
 			<Helmet>
-				<meta name='description' itemprop='description' content={`Participe! Vote no Ranking ${ranking.name}`} />
+				<meta name='description' content={`Participe! Vote no Ranking ${ranking.name}`} />
 				<meta itemprop='description' content={`Participe! Vote no Ranking ${ranking.name}`} />
 				<meta property='og:description' content={`Participe! Vote no Ranking ${ranking.name}`} />
 				<meta property='twitter:description' content={`Participe! Vote no Ranking ${ranking.name}`} />

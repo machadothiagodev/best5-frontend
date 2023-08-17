@@ -11,6 +11,8 @@ import SignupPage, { action as signupAction } from './pages/Signup'
 import { action as logoutAction } from './pages/Logout'
 import { getAuthToken, checkUserLogin } from './util/auth';
 import EmailConfirmPage, { action as emailConfirmAction } from './pages/EmailConfirm';
+import AboutPage from './pages/About';
+import AdvertisePage from './pages/Advertise';
 
 const router = createBrowserRouter(
 	[
@@ -28,7 +30,9 @@ const router = createBrowserRouter(
 						{ path: 'rankings', element: <RankingsPage />, loader: rankingsLoader },
 						{ path: 'rankings/:id', element: <RankingDetailPage />, loader: rankingDetailLoader },
 						{ path: 'rankings/:id/:slug', element: <RankingDetailPage />, loader: rankingDetailLoader },
-						{ path: 'rankings/new', element: <NewRankingPage />, action: newRankingAction, loader: checkUserLogin }
+						{ path: 'rankings/new', element: <NewRankingPage />, action: newRankingAction, loader: checkUserLogin },
+						{ path: 'advertise', element: <AdvertisePage />, loader: checkUserLogin },
+						{ path: 'about', element: <AboutPage /> }
 					]
 				},
 				{
