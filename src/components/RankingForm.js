@@ -1,12 +1,11 @@
 import './RankingForm.css'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate, useSubmit, useNavigation } from 'react-router-dom'
+import { useSubmit, useNavigation } from 'react-router-dom'
 import ReCAPTCHA from 'react-google-recaptcha';
 
-const RankingForm = (props) => {
+const RankingForm = () => {
 
-	const navigate = useNavigate();
 	const navigation = useNavigation();
 
 	const isSubmitting = navigation.state === 'submitting';
@@ -16,8 +15,7 @@ const RankingForm = (props) => {
 	const {
 		register,
 		handleSubmit,
-		watch,
-		formState: { errors },
+		formState: { errors }
 	} = useForm();
 
 	const initalState_items = [
@@ -64,7 +62,7 @@ const RankingForm = (props) => {
 		});
 	}
 
-	const submitHandler = (event) => {
+	const submitHandler = () => {
 		let rankingTitle = 'MELHOR ' + prodOrServ.toUpperCase();
 
 		const newRanking = {};
@@ -93,7 +91,6 @@ const RankingForm = (props) => {
 					))}
 				</div>
 				<div className='new-expense__actions'>
-					<button type="button" onClick={() => navigate('..')}>CANCELAR</button>
 					<button type='submit' disabled={isSubmitting}>{isSubmitting ? 'PROCESSANDO...' : 'SALVAR'}</button>
 				</div>
 			</form>
