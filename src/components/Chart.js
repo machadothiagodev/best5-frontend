@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import { getJwtToken } from '../util/auth'
 import { getHost } from '../util/host';
 
 import './Chart.css';
+import Feedback from './Feedback';
 
 const barColors = ['chart--red', 'chart--orange', 'chart--yellow', 'chart--green', 'chart--purple', 'chart--blue']
 
@@ -65,6 +67,7 @@ const Chart = (props) => {
 	const [showAddItem, setShowAddItem] = useState(false);
 	const [newItem, setNewItem] = useState();
 	const [errorMessage, setErrorMessage] = useState();
+	const [modalOpen, setModalOpen] = useState(false);
 
 	const recaptchaRef = useRef();
 
@@ -166,7 +169,8 @@ const Chart = (props) => {
 				setNewItem();
 
 				props.onVote(ranKingItemSelect);
-				alert('OBRIGADO PELO SUA PARTICIPAÇÃO');
+				// alert('OBRIGADO PELO SUA PARTICIPAÇÃO');
+				setModalOpen(true);
 			} catch (error) {
 				setErrorMessage(error.message);
 			}
@@ -224,6 +228,10 @@ const Chart = (props) => {
 					console.log('Deu ruim!');
 				}
 			}).catch(error => console.log(error));
+	}
+
+	const closeModal = () => {
+		setModalOpen(false);
 	}
 
 	return (
@@ -333,6 +341,11 @@ const Chart = (props) => {
 					}
 				</>
 			}
+			<Modal isOpen={modalOpen} className='modal-dialog'>
+				<button onClick={closeModal} className='btn-close'>x</button>
+				<h2>OBRIGADO PELA SUA PARTICIPAÇÃO</h2>
+				<Feedback></Feedback>
+			</Modal>
 		</>
 	);
 };
