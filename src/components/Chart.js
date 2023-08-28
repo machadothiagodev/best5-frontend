@@ -7,7 +7,7 @@ import { getJwtToken } from '../util/auth'
 import { getHost } from '../util/host';
 
 import './Chart.css';
-import Feedback from './Feedback';
+import FeedbackModal from '../pages/Feedback';
 
 const barColors = ['chart--red', 'chart--orange', 'chart--yellow', 'chart--green', 'chart--purple', 'chart--blue']
 
@@ -67,7 +67,7 @@ const Chart = (props) => {
 	const [showAddItem, setShowAddItem] = useState(false);
 	const [newItem, setNewItem] = useState();
 	const [errorMessage, setErrorMessage] = useState();
-	const [modalOpen, setModalOpen] = useState(false);
+	const [showFeedbackModal, setShowFeedbackModal] = useState(false);
 
 	const recaptchaRef = useRef();
 
@@ -153,13 +153,13 @@ const Chart = (props) => {
 			}
 		} else {
 			try {
-				const response = await fetch(`${getHost()}/api/rankings/${props.ranking.id}/items/${ranKingItemSelect}`, {
-					method: 'PUT'
-				});
+				// const response = await fetch(`${getHost()}/api/rankings/${props.ranking.id}/items/${ranKingItemSelect}`, {
+				// 	method: 'PUT'
+				// });
 
-				if (!response.ok) {
-					throw new Error('Ops! Algo de errado aconteceu. Por favor, tente novamente');
-				}
+				// if (!response.ok) {
+				// 	throw new Error('Ops! Algo de errado aconteceu. Por favor, tente novamente');
+				// }
 
 				setShowVoteOptions(false);
 				setShowAddItem(false);
@@ -168,9 +168,9 @@ const Chart = (props) => {
 				setRanKingItemSelect();
 				setNewItem();
 
-				props.onVote(ranKingItemSelect);
+				// props.onVote(ranKingItemSelect);
 				// alert('OBRIGADO PELO SUA PARTICIPAÇÃO');
-				setModalOpen(true);
+				setShowFeedbackModal(true);
 			} catch (error) {
 				setErrorMessage(error.message);
 			}
@@ -230,15 +230,11 @@ const Chart = (props) => {
 			}).catch(error => console.log(error));
 	}
 
-	const closeModal = () => {
-		setModalOpen(false);
-	}
-
 	return (
 		<>
-			<ReCAPTCHA ref={recaptchaRef} onChange={e => console.log(e)} size='invisible' sitekey='6LdmdPAmAAAAABINh3WHm_u3aHSeOTtGzFLGxryh' />
 			{props.ranking &&
 				<>
+					<FeedbackModal open={showFeedbackModal}></FeedbackModal>
 					<div style={{ textAlign: 'right', fontSize: '0.7rem', paddingBottom: '8px' }}>#{props.ranking.id}</div>
 					<div style={{ fontSize: '2rem', paddingBottom: '20px' }}>{props.ranking.name}</div>
 					<div className='charts'>
@@ -339,13 +335,9 @@ const Chart = (props) => {
 							</a>
 						</div>
 					}
+					<ReCAPTCHA ref={recaptchaRef} onChange={e => console.log(e)} size='invisible' sitekey='6LdmdPAmAAAAABINh3WHm_u3aHSeOTtGzFLGxryh' />
 				</>
 			}
-			<Modal isOpen={modalOpen} className='modal-dialog'>
-				<button onClick={closeModal} className='btn-close'>x</button>
-				<h2>OBRIGADO PELA SUA PARTICIPAÇÃO</h2>
-				<Feedback></Feedback>
-			</Modal>
 		</>
 	);
 };

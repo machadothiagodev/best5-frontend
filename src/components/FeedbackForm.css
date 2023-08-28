@@ -1,9 +1,9 @@
 
-/* .rate {
-    float: left;
-    height: 46px;
-    padding: 0 10px;
-} */
+.rate {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
 .rate:not(:checked) > input {
     position:absolute;
     top:-9999px;
