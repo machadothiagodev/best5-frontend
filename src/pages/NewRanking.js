@@ -1,8 +1,9 @@
 import { redirect, json } from "react-router-dom";
 
-import RankingForm from "../components/RankingForm";
 import { getJwtToken } from "../util/auth";
 import { getHost } from "../util/host";
+
+import RankingForm from "../components/RankingForm";
 
 const NewRankingPage = () => {
     return (
@@ -20,7 +21,7 @@ export async function action({ request }) {
         if (!formData.get('rankingItemName_' + i)) {
             break;
         }
-        newRankingItems.push({name: formData.get('rankingItemName_' + i)});
+        newRankingItems.push({ name: formData.get('rankingItemName_' + i) });
     }
 
     const newRanking = {

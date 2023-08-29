@@ -1,8 +1,37 @@
+.modal-dialog {
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    border-radius: 4px;
+    padding: 15px;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 550px;
+        margin: 1.75rem auto;
+    }
+}
+
+.btn-close {
+    cursor: pointer;
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    background-color: transparent;
+    border: 0;
+    font-family: inherit;
+}
+
+
 
 .rate {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    gap: 7px;
+    gap: 7px; */
 }
 .rate:not(:checked) > input {
     position:absolute;
@@ -14,7 +43,7 @@
     overflow:hidden;
     white-space:nowrap;
     cursor:pointer;
-    font-size:30px;
+    font-size:40px;
     color:#ccc;
 }
 .rate:not(:checked) > label:before {
@@ -56,6 +85,11 @@
   
   .btn:hover {
     background-color: #ebebeb;
+  }
+
+  .btn:disabled {
+    background-color: #ebebeb;
+    cursor: not-allowed;
   }
   
   .mb3 {

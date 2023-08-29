@@ -1,13 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Modal from 'react-modal';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import { getJwtToken } from '../util/auth'
 import { getHost } from '../util/host';
 
 import './Chart.css';
-import FeedbackModal from '../pages/Feedback';
+import FeedbackModal from './FeedbackModal';
 
 const barColors = ['chart--red', 'chart--orange', 'chart--yellow', 'chart--green', 'chart--purple', 'chart--blue']
 
@@ -106,18 +105,18 @@ const Chart = (props) => {
 	const voteHandler = async () => {
 		setErrorMessage(null);
 
-		const token = await recaptchaRef.current.executeAsync();
+		// const token = await recaptchaRef.current.executeAsync();
 
-		if (token) {
-			const response = await fetch(`${getHost()}/api/recaptcha/verify/${token}`, {
-				method: 'PUT'
-			});
+		// if (token) {
+		// 	const response = await fetch(`${getHost()}/api/recaptcha/verify/${token}`, {
+		// 		method: 'PUT'
+		// 	});
 
-			const data = await response.json();
-			console.log('Result from verification', data);
-		}
+		// 	const data = await response.json();
+		// 	console.log('Result from verification', data);
+		// }
 
-		recaptchaRef.current.reset();
+		// recaptchaRef.current.reset();
 
 		if (newItem) {
 			try {
@@ -147,19 +146,20 @@ const Chart = (props) => {
 				setNewItem();
 
 				props.onAdd(data);
-				alert('OBRIGADO PELO SUA PARTICIPAÇÃO');
+				// alert('OBRIGADO PELO SUA PARTICIPAÇÃO');
+				setShowFeedbackModal(true);
 			} catch (error) {
 				setErrorMessage(error.message);
 			}
 		} else {
 			try {
-				// const response = await fetch(`${getHost()}/api/rankings/${props.ranking.id}/items/${ranKingItemSelect}`, {
-				// 	method: 'PUT'
-				// });
+				const response = await fetch(`${getHost()}/api/rankings/${props.ranking.id}/items/${ranKingItemSelect}`, {
+					method: 'PUT'
+				});
 
-				// if (!response.ok) {
-				// 	throw new Error('Ops! Algo de errado aconteceu. Por favor, tente novamente');
-				// }
+				if (!response.ok) {
+					throw new Error('Ops! Algo de errado aconteceu. Por favor, tente novamente');
+				}
 
 				setShowVoteOptions(false);
 				setShowAddItem(false);
@@ -168,7 +168,7 @@ const Chart = (props) => {
 				setRanKingItemSelect();
 				setNewItem();
 
-				// props.onVote(ranKingItemSelect);
+				props.onVote(ranKingItemSelect);
 				// alert('OBRIGADO PELO SUA PARTICIPAÇÃO');
 				setShowFeedbackModal(true);
 			} catch (error) {
@@ -230,11 +230,15 @@ const Chart = (props) => {
 			}).catch(error => console.log(error));
 	}
 
+	const closeFeedbackModal = () => {
+		setShowFeedbackModal(false);
+	}
+
 	return (
 		<>
 			{props.ranking &&
 				<>
-					<FeedbackModal open={showFeedbackModal}></FeedbackModal>
+					<FeedbackModal open={showFeedbackModal} onClose={closeFeedbackModal}></FeedbackModal>
 					<div style={{ textAlign: 'right', fontSize: '0.7rem', paddingBottom: '8px' }}>#{props.ranking.id}</div>
 					<div style={{ fontSize: '2rem', paddingBottom: '20px' }}>{props.ranking.name}</div>
 					<div className='charts'>
@@ -335,7 +339,7 @@ const Chart = (props) => {
 							</a>
 						</div>
 					}
-					<ReCAPTCHA ref={recaptchaRef} onChange={e => console.log(e)} size='invisible' sitekey='6LdmdPAmAAAAABINh3WHm_u3aHSeOTtGzFLGxryh' />
+					{/* <ReCAPTCHA ref={recaptchaRef} onChange={e => console.log(e)} size='invisible' sitekey='6LdmdPAmAAAAABINh3WHm_u3aHSeOTtGzFLGxryh' /> */}
 				</>
 			}
 		</>
